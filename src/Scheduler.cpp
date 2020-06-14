@@ -1,7 +1,7 @@
 #include "Scheduler.h"
 
-void Scheduler::handleTickerFlag(volatile bool* flag) {
-    *flag = true;
+void Scheduler::handleTickerFlag(Scheduler *s) {
+    s->flag = true;
 }
 
  void Scheduler::add(TaskItem::Callback callback) {
@@ -26,6 +26,6 @@ void Scheduler::loop() {
         if (task.callback) {
             task.callback();
         }
-        t.once_ms(task.period, Scheduler::handleTickerFlag, &(this->flag));
+        t.once_ms(task.period, Scheduler::handleTickerFlag, this);
     }
 }

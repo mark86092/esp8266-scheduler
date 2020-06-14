@@ -20,7 +20,7 @@ class Scheduler {
         unsigned int step = 0;
         std::vector<TaskItem> tasks;
 
-        static void handleTickerFlag(volatile bool* flag);
+        static void handleTickerFlag(Scheduler *s);
     public:
         void add(TaskItem::Callback) ;
         void sleep(uint32_t);
